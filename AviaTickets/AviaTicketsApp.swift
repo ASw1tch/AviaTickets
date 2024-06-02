@@ -8,10 +8,12 @@
 import SwiftUI
 
 @main
-struct AviaTicketsApp: App {
+struct MyApp: App {
+    @StateObject private var coordinator = MainCoordinator()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView(coordinator: coordinator)
         }
     }
 }

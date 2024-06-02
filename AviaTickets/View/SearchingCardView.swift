@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct SearchingCardView: View {
+    
+    @State var flightFrom = ""
+    @State var flightTo  = ""
+    let image = "dieAntwood"
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Color.black.ignoresSafeArea()
+            scrollCardView()
+
+        }
+            }
+    
+    @ViewBuilder
+    func scrollCardView() -> some View {
+        Image(image)
+            .resizable()
+            .frame(width: 130, height: 130)
     }
 }
 

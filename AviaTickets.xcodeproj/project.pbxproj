@@ -7,16 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EAA74DC32C07B45100B6A8B7 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DC22C07B45100B6A8B7 /* ColorExtention.swift */; };
+		EAA74DC52C07B4C100B6A8B7 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DC42C07B4C100B6A8B7 /* MainCoordinator.swift */; };
+		EAA74DC72C07B5CB00B6A8B7 /* AviaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DC62C07B5CB00B6A8B7 /* AviaView.swift */; };
+		EAA74DC92C07B5EA00B6A8B7 /* HotelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DC82C07B5EA00B6A8B7 /* HotelsView.swift */; };
+		EAA74DCD2C07B63900B6A8B7 /* ShortlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DCC2C07B63900B6A8B7 /* ShortlyView.swift */; };
+		EAA74DCF2C07B64400B6A8B7 /* SubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DCE2C07B64400B6A8B7 /* SubscriptionsView.swift */; };
+		EAA74DD12C07B66100B6A8B7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DD02C07B66100B6A8B7 /* ProfileView.swift */; };
+		EAA74DD32C0CBAFE00B6A8B7 /* SearchingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DD22C0CBAFE00B6A8B7 /* SearchingCardView.swift */; };
+		EAA74DD52C0CFE4900B6A8B7 /* OffersJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DD42C0CFE4900B6A8B7 /* OffersJSON.swift */; };
+		EAA74DD72C0CFF2900B6A8B7 /* OffersTicketsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DD62C0CFF2900B6A8B7 /* OffersTicketsJSON.swift */; };
+		EAA74DD92C0D000800B6A8B7 /* TicketsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DD82C0D000800B6A8B7 /* TicketsJSON.swift */; };
+		EAA74DDC2C0D011E00B6A8B7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DDB2C0D011E00B6A8B7 /* NetworkManager.swift */; };
 		EAF4977A2C07AFED00F535DC /* AviaTicketsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF497792C07AFED00F535DC /* AviaTicketsApp.swift */; };
-		EAF4977C2C07AFED00F535DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF4977B2C07AFED00F535DC /* ContentView.swift */; };
+		EAF4977C2C07AFED00F535DC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF4977B2C07AFED00F535DC /* MainView.swift */; };
 		EAF4977E2C07B00200F535DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAF4977D2C07B00200F535DC /* Assets.xcassets */; };
 		EAF497812C07B00200F535DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAF497802C07B00200F535DC /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EAA74DC22C07B45100B6A8B7 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
+		EAA74DC42C07B4C100B6A8B7 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		EAA74DC62C07B5CB00B6A8B7 /* AviaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AviaView.swift; sourceTree = "<group>"; };
+		EAA74DC82C07B5EA00B6A8B7 /* HotelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsView.swift; sourceTree = "<group>"; };
+		EAA74DCC2C07B63900B6A8B7 /* ShortlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortlyView.swift; sourceTree = "<group>"; };
+		EAA74DCE2C07B64400B6A8B7 /* SubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsView.swift; sourceTree = "<group>"; };
+		EAA74DD02C07B66100B6A8B7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		EAA74DD22C0CBAFE00B6A8B7 /* SearchingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingCardView.swift; sourceTree = "<group>"; };
+		EAA74DD42C0CFE4900B6A8B7 /* OffersJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersJSON.swift; sourceTree = "<group>"; };
+		EAA74DD62C0CFF2900B6A8B7 /* OffersTicketsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTicketsJSON.swift; sourceTree = "<group>"; };
+		EAA74DD82C0D000800B6A8B7 /* TicketsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsJSON.swift; sourceTree = "<group>"; };
+		EAA74DDB2C0D011E00B6A8B7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EAF497762C07AFED00F535DC /* AviaTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AviaTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF497792C07AFED00F535DC /* AviaTicketsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AviaTicketsApp.swift; sourceTree = "<group>"; };
-		EAF4977B2C07AFED00F535DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EAF4977B2C07AFED00F535DC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		EAF4977D2C07B00200F535DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAF497802C07B00200F535DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,6 +56,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EAA74DBF2C07B13900B6A8B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EAF4977B2C07AFED00F535DC /* MainView.swift */,
+				EAA74DC62C07B5CB00B6A8B7 /* AviaView.swift */,
+				EAA74DD22C0CBAFE00B6A8B7 /* SearchingCardView.swift */,
+				EAA74DC82C07B5EA00B6A8B7 /* HotelsView.swift */,
+				EAA74DCC2C07B63900B6A8B7 /* ShortlyView.swift */,
+				EAA74DCE2C07B64400B6A8B7 /* SubscriptionsView.swift */,
+				EAA74DD02C07B66100B6A8B7 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EAA74DC02C07B17C00B6A8B7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EAF4977D2C07B00200F535DC /* Assets.xcassets */,
+				EAA74DC22C07B45100B6A8B7 /* ColorExtention.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EAA74DC12C07B41900B6A8B7 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				EAA74DC42C07B4C100B6A8B7 /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		EAA74DDA2C0D005A00B6A8B7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EAA74DD82C0D000800B6A8B7 /* TicketsJSON.swift */,
+				EAA74DD42C0CFE4900B6A8B7 /* OffersJSON.swift */,
+				EAA74DD62C0CFF2900B6A8B7 /* OffersTicketsJSON.swift */,
+				EAA74DDB2C0D011E00B6A8B7 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		EAF4976D2C07AFED00F535DC = {
 			isa = PBXGroup;
 			children = (
@@ -52,8 +118,12 @@
 			isa = PBXGroup;
 			children = (
 				EAF497792C07AFED00F535DC /* AviaTicketsApp.swift */,
-				EAF4977B2C07AFED00F535DC /* ContentView.swift */,
-				EAF4977D2C07B00200F535DC /* Assets.xcassets */,
+				EAF497872C07B04600F535DC /* Model */,
+				EAA74DBF2C07B13900B6A8B7 /* View */,
+				EAF497892C07B06A00F535DC /* ViewModel */,
+				EAA74DC12C07B41900B6A8B7 /* Coordinator */,
+				EAA74DDA2C0D005A00B6A8B7 /* Network */,
+				EAA74DC02C07B17C00B6A8B7 /* Helpers */,
 				EAF4977F2C07B00200F535DC /* Preview Content */,
 			);
 			path = AviaTickets;
@@ -65,6 +135,20 @@
 				EAF497802C07B00200F535DC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EAF497872C07B04600F535DC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EAF497892C07B06A00F535DC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +221,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAF4977C2C07AFED00F535DC /* ContentView.swift in Sources */,
+				EAA74DD52C0CFE4900B6A8B7 /* OffersJSON.swift in Sources */,
+				EAA74DC72C07B5CB00B6A8B7 /* AviaView.swift in Sources */,
+				EAA74DD32C0CBAFE00B6A8B7 /* SearchingCardView.swift in Sources */,
+				EAA74DC32C07B45100B6A8B7 /* ColorExtention.swift in Sources */,
+				EAA74DD12C07B66100B6A8B7 /* ProfileView.swift in Sources */,
+				EAA74DC52C07B4C100B6A8B7 /* MainCoordinator.swift in Sources */,
+				EAA74DD92C0D000800B6A8B7 /* TicketsJSON.swift in Sources */,
+				EAA74DCD2C07B63900B6A8B7 /* ShortlyView.swift in Sources */,
+				EAF4977C2C07AFED00F535DC /* MainView.swift in Sources */,
+				EAA74DD72C0CFF2900B6A8B7 /* OffersTicketsJSON.swift in Sources */,
+				EAA74DDC2C0D011E00B6A8B7 /* NetworkManager.swift in Sources */,
+				EAA74DCF2C07B64400B6A8B7 /* SubscriptionsView.swift in Sources */,
 				EAF4977A2C07AFED00F535DC /* AviaTicketsApp.swift in Sources */,
+				EAA74DC92C07B5EA00B6A8B7 /* HotelsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,17 +8,51 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @ObservedObject var coordinator: MainCoordinator
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            
+            Color(.black).edgesIgnoringSafeArea(.all)
+            
+            TabView(selection: $coordinator.selectedTab) {
+                AviaView(coordinator: coordinator)
+                    .tabItem {
+                        Label("Авиабилеты", image: "planeMain")
+                    }
+                    .tag(MainCoordinator.Tab.avia)
+                
+                HotelsView()
+                    .tabItem {
+                        Label("Отели", image: "bed")
+                    }
+                    .tag(MainCoordinator.Tab.hotels)
+                
+                ShortlyView()
+                    .tabItem {
+                        Label("Короче", image: "locationMark")
+                    }
+                    .tag(MainCoordinator.Tab.cruises)
+                
+                SubscriptionsView()
+                    .tabItem {
+                        Label("Подписки", image: "bell")
+                    }
+                    .tag(MainCoordinator.Tab.subscriptions)
+                
+                ProfileView()
+                    .tabItem {
+                        Label("Профиль", image: "person")
+                    }
+                    .tag(MainCoordinator.Tab.profile)
+                
+            }
+            .tint(.blue)
         }
-        .padding()
     }
 }
 
 #Preview {
-    MainView()
+    MainView(coordinator: MainCoordinator())
 }

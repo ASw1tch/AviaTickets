@@ -9,7 +9,12 @@ import SwiftUI
 
 struct HotelsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color(.black).edgesIgnoringSafeArea(.all)
+            Text("Hotels")
+                .foregroundStyle(.white)
+                .bold()
+        }
     }
 }
 
