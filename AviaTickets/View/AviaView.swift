@@ -11,6 +11,7 @@ struct AviaView: View {
     var coordinator: MainCoordinator
     @State var flightFrom = ""
     @State var flightTo  = ""
+    @State private var offers: [Offer] = []
     
     var body: some View {
         ZStack {
@@ -35,20 +36,39 @@ struct AviaView: View {
                 ScrollView(.horizontal) {
                     
                     HStack {
-                        Rectangle()
-                            .fill(Color.white)
-                            .frame(width: 180, height: 200)
-                        Rectangle()
-                            .fill(Color.white)
-                            .frame(width: 180, height: 200)
-                        Rectangle()
-                            .fill(Color.white)
-                            .frame(width: 180, height: 200)
+                        ForEach(offers, id: \.id) { offer in
+                            scrollCardView(offer: offer)
+                        }
                     }
                 }
                 
             }
         }.ignoresSafeArea()
+            .onAppear {
+                fetchOffers()
+            }
+    }
+    
+    private func fetchOffers() {
+        NetworkManager.shared.fetchOffers { result in
+            switch result {
+            case .success(let offersModel):
+                self.offers = offersModel.offers
+            case .failure(let error):
+                print("Error fetching offers: \(error)")
+            }
+        }
+    }
+    
+    private func getImageName(for id: Int) -> String {
+        let imageNames = [
+            1: "coupleAfrica",
+            2: "coupleStudio",
+            3: "lampabikt"
+            
+        ]
+        
+        return imageNames[id] ?? "dieAntwood"
     }
     
     @ViewBuilder
@@ -73,7 +93,13 @@ struct AviaView: View {
                     TextField("",
                               text: $flightFrom,
                               prompt: Text("Откуда - Москва")
-                        .foregroundStyle(Color.aviaGrey6))
+                              .foregroundStyle(Color.aviaGrey6))
+                    .onChange(of: flightFrom) { oldValue, newValue in
+                        let filtered = newValue.filter { $0.isCyrillic }
+                        if filtered != newValue {
+                            flightFrom = filtered
+                        }
+                    }
                     
                     Rectangle()
                         .fill(Color.gray)
@@ -85,7 +111,12 @@ struct AviaView: View {
                               text: $flightTo,
                               prompt: Text("Куда - Турция")
                         .foregroundStyle(Color.aviaGrey6))
-                    
+                    .onChange(of: flightTo) { oldValue, newValue in
+                        let filtered = newValue.filter { $0.isCyrillic }
+                        if filtered != newValue {
+                            flightFrom = filtered
+                        }
+                    }
                 }.bold()
                     .foregroundStyle(.white)
             }.offset(x: 30)
@@ -94,6 +125,47 @@ struct AviaView: View {
         
     }
     
+    @ViewBuilder
+    func scrollCardView(offer: Offer) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            let imageName = getImageName(for: offer.id)
+            let formattedPrice = formatPrice(offer.price.value)
+            Image(imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 180, height: 180)
+                .cornerRadius(16)
+            
+            Text(offer.title)
+                .font(.headline)
+                .foregroundStyle(.white)
+            Text(offer.town)
+                .font(.subheadline)
+                .foregroundStyle(.white)
+            HStack {
+                Image("planeMain")
+                    .resizable()
+                    .frame(width: 30.0, height: 30.0)
+                    .foregroundStyle(Color.aviaGrey7)
+                Text("от \(formattedPrice) ₽")
+                    .font(.subheadline)
+                    .foregroundStyle(.white)
+            }
+        }
+    }
+    private func formatPrice(_ value: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = " "
+        return formatter.string(from: NSNumber(value: value)) ?? "\(value)"
+    }
+}
+
+extension Character {
+    var isCyrillic: Bool {
+        let scalar = UnicodeScalar(String(self))!
+        return CharacterSet(charactersIn: "А"..."я").contains(scalar)
+    }
 }
 
 #Preview {

@@ -19,6 +19,9 @@
 		EAA74DD72C0CFF2900B6A8B7 /* OffersTicketsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DD62C0CFF2900B6A8B7 /* OffersTicketsJSON.swift */; };
 		EAA74DD92C0D000800B6A8B7 /* TicketsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DD82C0D000800B6A8B7 /* TicketsJSON.swift */; };
 		EAA74DDC2C0D011E00B6A8B7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DDB2C0D011E00B6A8B7 /* NetworkManager.swift */; };
+		EAA74DDE2C0D082600B6A8B7 /* TicketsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DDD2C0D082600B6A8B7 /* TicketsModel.swift */; };
+		EAA74DE02C0D083C00B6A8B7 /* OffersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DDF2C0D083C00B6A8B7 /* OffersModel.swift */; };
+		EAA74DE22C0D086100B6A8B7 /* OffersTicketsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA74DE12C0D086100B6A8B7 /* OffersTicketsModel.swift */; };
 		EAF4977A2C07AFED00F535DC /* AviaTicketsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF497792C07AFED00F535DC /* AviaTicketsApp.swift */; };
 		EAF4977C2C07AFED00F535DC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF4977B2C07AFED00F535DC /* MainView.swift */; };
 		EAF4977E2C07B00200F535DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAF4977D2C07B00200F535DC /* Assets.xcassets */; };
@@ -38,6 +41,9 @@
 		EAA74DD62C0CFF2900B6A8B7 /* OffersTicketsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTicketsJSON.swift; sourceTree = "<group>"; };
 		EAA74DD82C0D000800B6A8B7 /* TicketsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsJSON.swift; sourceTree = "<group>"; };
 		EAA74DDB2C0D011E00B6A8B7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		EAA74DDD2C0D082600B6A8B7 /* TicketsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsModel.swift; sourceTree = "<group>"; };
+		EAA74DDF2C0D083C00B6A8B7 /* OffersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersModel.swift; sourceTree = "<group>"; };
+		EAA74DE12C0D086100B6A8B7 /* OffersTicketsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersTicketsModel.swift; sourceTree = "<group>"; };
 		EAF497762C07AFED00F535DC /* AviaTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AviaTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF497792C07AFED00F535DC /* AviaTicketsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AviaTicketsApp.swift; sourceTree = "<group>"; };
 		EAF4977B2C07AFED00F535DC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -140,6 +146,9 @@
 		EAF497872C07B04600F535DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EAA74DDD2C0D082600B6A8B7 /* TicketsModel.swift */,
+				EAA74DDF2C0D083C00B6A8B7 /* OffersModel.swift */,
+				EAA74DE12C0D086100B6A8B7 /* OffersTicketsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,7 +232,10 @@
 			files = (
 				EAA74DD52C0CFE4900B6A8B7 /* OffersJSON.swift in Sources */,
 				EAA74DC72C07B5CB00B6A8B7 /* AviaView.swift in Sources */,
+				EAA74DE02C0D083C00B6A8B7 /* OffersModel.swift in Sources */,
 				EAA74DD32C0CBAFE00B6A8B7 /* SearchingCardView.swift in Sources */,
+				EAA74DDE2C0D082600B6A8B7 /* TicketsModel.swift in Sources */,
+				EAA74DE22C0D086100B6A8B7 /* OffersTicketsModel.swift in Sources */,
 				EAA74DC32C07B45100B6A8B7 /* ColorExtention.swift in Sources */,
 				EAA74DD12C07B66100B6A8B7 /* ProfileView.swift in Sources */,
 				EAA74DC52C07B4C100B6A8B7 /* MainCoordinator.swift in Sources */,
