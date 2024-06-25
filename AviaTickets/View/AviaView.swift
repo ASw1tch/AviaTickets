@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct AviaView: View {
-    var coordinator: MainCoordinator
+    @ObservedObject var coordinator: MainCoordinator
+    
     @State var flightFrom = ""
     @State var flightTo  = ""
     @State private var offers: [Offer] = []
+    @State private var showSheet: Bool = false
     
     var body: some View {
         ZStack {
@@ -118,7 +120,13 @@ struct AviaView: View {
                         }
                     }
                 }.bold()
-                    .foregroundStyle(.white)
+                 .foregroundStyle(.white)
+                 .onTapGesture {
+                     coordinator.showSheet()
+                 }
+                 .sheet(isPresented: $coordinator.isSheetPresented) {
+                     SearchingView()
+                 }
             }.offset(x: 30)
             
         }.padding(15)

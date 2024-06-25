@@ -44,9 +44,9 @@ extension Color {
     static let aviaGrey6 = Color(hex: "#9F9F9F")
     static let aviaGrey7 = Color(hex: "#DBDBDB")
     static let aviaBlue = Color(hex: "#4C95FE")
-    static let aviaDarkBue = Color(hex: "#00427D")
-    static let aviaGreen = Color(hex: "#4CB24E")
+    static let aviaDarkBlue = Color(hex: "#00427D")
+    static let aviaGreen = Color(hex: "#3A633B")
     static let aviaDarkGreen = Color(hex: "#015905")
-    static let aviaRed = Color(hex: "#FF0000")
+    static let aviaRed = Color(hex: "#FF5E5E")
     static let aviaOrange = Color(hex: "#F36E36")
 }

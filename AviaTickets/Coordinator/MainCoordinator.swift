@@ -8,7 +8,9 @@
 import SwiftUI
 
 class MainCoordinator: ObservableObject {
+    
     @Published var selectedTab: Tab = .avia
+    @Published var isSheetPresented: Bool = false
     
     enum Tab: String {
         case avia = "Авиабилеты"
@@ -21,5 +23,9 @@ class MainCoordinator: ObservableObject {
     
     func selectTab(_ tab: Tab) {
         selectedTab = tab
+    }
+    
+    func showSheet() {
+        isSheetPresented = true
     }
 }
