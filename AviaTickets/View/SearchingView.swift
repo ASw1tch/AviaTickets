@@ -8,42 +8,73 @@
 import SwiftUI
 
 struct SearchingView: View {
-    @State var flightFrom = ""
-    @State var flightTo  = ""
+    
+    @ObservedObject var coordinator: MainCoordinator
+    
+    @Binding var flightFrom: String
+    @Binding var flightTo: String 
     
     var body: some View {
-        ZStack {
-            Color.aviaGrey2.ignoresSafeArea()
-            
-            VStack {
-                RoundedRectangle(cornerRadius: 50)
-                    .frame(width: 50)
-                    .frame(height: 6)
-                    .foregroundColor(Color.aviaGrey4)
-                    .padding()
-                Spacer()
-            }
-            VStack(spacing: 20) {
-                searchCardView()
-                HStack(alignment: .top, spacing: 25) {
-                    fastButton(color: .aviaGreen, image: "route", text: "Сложный маршрут")
-                    fastButton(color: .aviaBlue, image: "planet", text: "Куда угодно")
-                    fastButton(color: .aviaDarkBlue, image: "calendar", text: "Выходные")
-                    fastButton(color: .aviaRed, image: "fire", text: "Горячие билеты")
+        NavigationStack {
+            ZStack {
+                Color.aviaGrey2.ignoresSafeArea()
+                
+                VStack {
+                    RoundedRectangle(cornerRadius: 50)
+                        .frame(width: 50)
+                        .frame(height: 6)
+                        .foregroundColor(Color.aviaGrey4)
+                        .padding()
+                    Spacer()
                 }
-                ZStack {
-                    RoundedRectangle(cornerRadius: 15, style: .continuous)
-                        .fill(Color.aviaGrey4)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 300)
-                        .padding(.horizontal, 10)
-                        .shadow(radius: 2, y: 3)
-                    VStack {
-                        suggestionCardView(city: "Стамбул", image: "istambul")
-                        suggestionCardView(city: "Сочи", image: "sochi")
-                        suggestionCardView(city: "Пхукет", image: "phuket")
+                VStack(spacing: 20) {
+                    searchCardView()
+                    HStack(alignment: .top, spacing: 25) {
+                        Button(action: {
+                            coordinator.hideSheetAndPush(MultiCityRoute())
+                        }, label: {
+                            fastButton(color: .aviaGreen, image: "route", text: "Сложный маршрут")
+                        })
+                        Button(action: {
+                            flightTo = "Куда угодно"
+
+
+                        }, label: {
+                            fastButton(color: .aviaBlue, image: "planet", text: "Куда угодно")
+                        })
+                        
+                        Button(action: {
+                        }, label: {
+                            
+                            fastButton(color: .aviaDarkBlue, image: "calendar", text: "Выходные")
+                        })
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            fastButton(color: .aviaRed, image: "fire", text: "Горячие билеты")
+                        })
+                        
+                        
+                        
+                    }
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.aviaGrey4)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 300)
+                            .padding(.horizontal, 10)
+                            .shadow(radius: 2, y: 3)
+                        VStack {
+                            suggestionCardView(city: "Стамбул", image: "istambul")
+                            suggestionCardView(city: "Сочи", image: "sochi")
+                            suggestionCardView(city: "Пхукет", image: "phuket")
+                        }
                     }
                 }
+            }
+            .navigationDestination(isPresented: $coordinator.isNavigating) {
+                coordinator.destinationView
             }
         }
     }
@@ -70,7 +101,8 @@ struct SearchingView: View {
                                   prompt: Text("Откуда - Москва")
                             .foregroundStyle(Color.aviaGrey6))
                         .onChange(of: flightFrom) { oldValue, newValue in
-                            let filtered = newValue.filter { $0.isCyrillic }
+                            UserDefaults.standard.set(newValue, forKey: "flightFrom")
+                            let filtered = newValue.filter { $0.isCyrillic || $0.isWhitespace  }
                             if filtered != newValue {
                                 flightFrom = filtered
                             }
@@ -91,13 +123,15 @@ struct SearchingView: View {
                                   prompt: Text("Куда - Турция")
                             .foregroundStyle(Color.aviaGrey6))
                         .onChange(of: flightTo) { oldValue, newValue in
-                            let filtered = newValue.filter { $0.isCyrillic }
+                            UserDefaults.standard.set(newValue, forKey: "flightTo")
+                            let filtered = newValue.filter { $0.isCyrillic || $0.isWhitespace  }
                             if filtered != newValue {
-                                flightFrom = filtered
+                                flightTo = filtered
                             }
                         }
+                        .accentColor(.white)
                         Button(action: {
-                            
+                            flightTo = ""
                         }, label: {
                             Image("xMark")
                                 .resizable()
@@ -160,6 +194,11 @@ struct SearchingView: View {
     }
 }
 
-#Preview {
-    SearchingView()
+struct SearchingView_Previews: PreviewProvider {
+    @State static var flightFrom = "Москва"
+    @State static var flightTo = "Санкт-Петербург"
+    
+    static var previews: some View {
+            SearchingView(coordinator: MainCoordinator(), flightFrom: $flightFrom, flightTo: $flightTo)
+    }
 }

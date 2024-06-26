@@ -1,23 +1,23 @@
 //
-//  SubscriptionsView.swift
+//  MultiCityRoute.swift
 //  AviaTickets
 //
-//  Created by Anatoliy Petrov on 29.5.24..
+//  Created by Anatoliy Petrov on 26.6.24..
 //
 
 import SwiftUI
 
-struct SubscriptionsView: View {
+struct MultiCityRoute: View {
     var body: some View {
         ZStack {
             Color(.black).edgesIgnoringSafeArea(.all)
-            Text("Subscriptions")
+            Text("Куда угодно")
                 .foregroundStyle(.white)
                 .bold()
         }
-        }
+    }
 }
 
 #Preview {
-    SubscriptionsView()
+    MultiCityRoute()
 }

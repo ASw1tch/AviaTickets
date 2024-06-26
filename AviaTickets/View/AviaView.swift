@@ -16,39 +16,44 @@ struct AviaView: View {
     @State private var showSheet: Bool = false
     
     var body: some View {
-        ZStack {
-            Color.black
-            VStack(alignment: .leading) {
-                Text("Поиск дешевых авиaбилетов")
-                    .frame(maxWidth: .infinity, alignment: .center)
-                
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(.white)
-                    .font(.title)
-                    .bold()
-                searchCardView()
-                VStack{
-                    Text("Музыкально отлететь")
+        NavigationStack {
+            ZStack {
+                Color.black
+                VStack(alignment: .leading) {
+                    Text("Поиск дешевых авиaбилетов")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    
+                        .multilineTextAlignment(.center)
                         .foregroundStyle(.white)
                         .font(.title)
-                        .padding()
                         .bold()
-
-                }
-                ScrollView(.horizontal) {
-                    
-                    HStack {
-                        ForEach(offers, id: \.id) { offer in
-                            scrollCardView(offer: offer)
+                    searchCardView()
+                    VStack{
+                        Text("Музыкально отлететь")
+                            .foregroundStyle(.white)
+                            .font(.title)
+                            .padding()
+                            .bold()
+                        
+                    }
+                    ScrollView(.horizontal) {
+                        
+                        HStack {
+                            ForEach(offers, id: \.id) { offer in
+                                scrollCardView(offer: offer)
+                            }
                         }
                     }
+                    
                 }
-                
-            }
-        }.ignoresSafeArea()
-            .onAppear {
-                fetchOffers()
-            }
+            }.ignoresSafeArea()
+                .onAppear {
+                    fetchOffers()
+                }
+                .navigationDestination(isPresented: $coordinator.isNavigating) {
+                    coordinator.destinationView
+                }
+        }
     }
     
     private func fetchOffers() {
@@ -97,7 +102,7 @@ struct AviaView: View {
                               prompt: Text("Откуда - Москва")
                               .foregroundStyle(Color.aviaGrey6))
                     .onChange(of: flightFrom) { oldValue, newValue in
-                        let filtered = newValue.filter { $0.isCyrillic }
+                        let filtered = newValue.filter { $0.isCyrillic || $0.isWhitespace }
                         if filtered != newValue {
                             flightFrom = filtered
                         }
@@ -114,7 +119,7 @@ struct AviaView: View {
                               prompt: Text("Куда - Турция")
                         .foregroundStyle(Color.aviaGrey6))
                     .onChange(of: flightTo) { oldValue, newValue in
-                        let filtered = newValue.filter { $0.isCyrillic }
+                        let filtered = newValue.filter { $0.isCyrillic || $0.isWhitespace }
                         if filtered != newValue {
                             flightFrom = filtered
                         }
@@ -122,10 +127,10 @@ struct AviaView: View {
                 }.bold()
                  .foregroundStyle(.white)
                  .onTapGesture {
-                     coordinator.showSheet()
+                     coordinator.showSheet(with: SearchingView(coordinator: coordinator, flightFrom: $flightFrom, flightTo: $flightTo))
                  }
                  .sheet(isPresented: $coordinator.isSheetPresented) {
-                     SearchingView()
+                     SearchingView(coordinator: coordinator, flightFrom: $flightFrom, flightTo: $flightTo)
                  }
             }.offset(x: 30)
             
@@ -172,7 +177,7 @@ struct AviaView: View {
 extension Character {
     var isCyrillic: Bool {
         let scalar = UnicodeScalar(String(self))!
-        return CharacterSet(charactersIn: "А"..."я").contains(scalar)
+        return CharacterSet(charactersIn: "А"..."я" ).contains(scalar)
     }
 }
 
