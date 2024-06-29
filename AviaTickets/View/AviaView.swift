@@ -44,7 +44,6 @@ struct AviaView: View {
                             }
                         }
                     }
-                    
                 }
             }.ignoresSafeArea()
                 .onAppear {

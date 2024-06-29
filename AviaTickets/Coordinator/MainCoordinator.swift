@@ -14,6 +14,10 @@ class MainCoordinator: ObservableObject {
     @Published var isNavigating: Bool = false
     @Published var sheetContent: AnyView?
     @Published var destinationView: AnyView?
+    @Published var isDatePickerPresented = false
+    @Published var selectedDate: Date = Date()
+    @Published var isReturnDatePickerPresented = false
+    @Published var selectedReturnDate: Date? = nil
     
     //MARK: Tab Navigation
     enum Tab: String {
@@ -59,5 +63,27 @@ class MainCoordinator: ObservableObject {
     func pop() {
         isNavigating = false
         destinationView = nil
+    }
+    
+    //MARK: Validation of the filled TextField
+    
+    func validateFieldsAndNavigate(flightFrom: String, flightTo: String, content: AnyView) {
+        if !flightFrom.isEmpty && !flightTo.isEmpty {
+            hideSheetAndPush(content)
+        } else {
+            print("Заполните оба поля")
+        }
+    }
+    
+    //MARK: Showing Calendar Pickdate Sheet
+    
+    func showDatePicker(selectedDate: Binding<Date>) {
+        self.selectedDate = selectedDate.wrappedValue
+        isDatePickerPresented = true
+    }
+    
+    func showReturnDatePicker(selectedDate: Binding<Date?>) {
+        self.selectedReturnDate = selectedDate.wrappedValue
+        isReturnDatePickerPresented = true
     }
 }

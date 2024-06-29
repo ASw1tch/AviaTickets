@@ -35,22 +35,21 @@ struct SearchingView: View {
                         }, label: {
                             fastButton(color: .aviaGreen, image: "route", text: "Сложный маршрут")
                         })
+                        
                         Button(action: {
                             flightTo = "Куда угодно"
-
-
                         }, label: {
                             fastButton(color: .aviaBlue, image: "planet", text: "Куда угодно")
                         })
                         
                         Button(action: {
+                            coordinator.hideSheetAndPush(WeekendView())
                         }, label: {
-                            
                             fastButton(color: .aviaDarkBlue, image: "calendar", text: "Выходные")
                         })
                         
                         Button(action: {
-                            
+                            coordinator.hideSheetAndPush(HotOffersView())
                         }, label: {
                             fastButton(color: .aviaRed, image: "fire", text: "Горячие билеты")
                         })
@@ -145,6 +144,10 @@ struct SearchingView: View {
                 }
             }.offset(x: 30)
         }.padding(5)
+            .onSubmit {
+                let content = AnyView(SearchResultView(coordinator: coordinator, flightFrom: $flightFrom, flightTo: $flightTo))
+                coordinator.validateFieldsAndNavigate(flightFrom: flightFrom, flightTo: flightTo, content: content)
+            }
     }
     
     func fastButton(color: Color, image: String, text: String) -> some View {
