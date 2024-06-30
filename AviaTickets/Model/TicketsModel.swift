@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 
 // MARK: - TicketsModel
 struct TicketsModel: Codable {

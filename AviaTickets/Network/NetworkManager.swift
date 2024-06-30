@@ -12,14 +12,17 @@ class NetworkManager {
     
     private init() {}
     
+    enum NetworkError: Error {
+        case noData
+    }
+    
+
     // Fetch Tickets from local JSON data
     func fetchTickets(completion: @escaping (Result<TicketsModel, Error>) -> Void) {
         guard let data = TicketsJSON.data else {
             completion(.failure(NetworkError.noData))
             return
         }
-        
-        
         decodeData(data: data, completion: completion)
     }
     
@@ -55,37 +58,4 @@ class NetworkManager {
     }
 }
 
-// Определение ошибок сети
-enum NetworkError: Error {
-    case noData
-}
 
-//// Пример использования для загрузки билетов
-//NetworkManager.shared.fetchTickets { result in
-//    switch result {
-//    case .success(let ticketsModel):
-//        print("Successfully fetched tickets:", ticketsModel)
-//    case .failure(let error):
-//        print("Failed to fetch tickets:", error)
-//    }
-//}
-//
-//// Пример использования для загрузки предложений
-//NetworkManager.shared.fetchOffers { result in
-//    switch result {
-//    case .success(let offersModel):
-//        print("Successfully fetched offers:", offersModel)
-//    case .failure(let error):
-//        print("Failed to fetch offers:", error)
-//    }
-//}
-//
-//// Пример использования для загрузки предложений на билеты
-//NetworkManager.shared.fetchTicketsOffers { result in
-//    switch result {
-//    case .success(let offersTicketsModel):
-//        print("Successfully fetched tickets offers:", offersTicketsModel)
-//    case .failure(let error):
-//        print("Failed to fetch tickets offers:", error)
-//    }
-//}

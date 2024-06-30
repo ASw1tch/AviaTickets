@@ -12,10 +12,13 @@ struct SearchResultView: View {
     
     @Binding var flightFrom: String
     @Binding var flightTo: String
+    
+    @State private var ticketsOffers: [TicketsOffer] = []
     @State private var selectedDate = Date()
     @State private var returnDate: Date? = nil
     @State private var isDatePickerPresented = false
-    
+    @State private var isOn = false
+    @StateObject private var viewModel = OfferTicketsViewModel()
     
     var body: some View {
         NavigationStack {
@@ -29,10 +32,69 @@ struct SearchResultView: View {
                             datePickerCapsule()
                             personAndClassCapsule()
                             filtersCapsule()
-                        }
-                        .padding(.horizontal, 15)
+                        }.padding(.horizontal, 15)
+                            
                     }
                     .scrollIndicators(.hidden)
+                    ZStack(alignment: .topLeading) {
+                        RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.aviaGrey2)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 350)
+                            .padding(.horizontal, 10)
+                            .shadow(radius: 2, y: 3)
+                        
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("Прямые рейсы")
+                                .font(.title2)
+                                .bold()
+                                .foregroundStyle(.white)
+                                .padding(.vertical, 15)
+                                .padding(.horizontal, 28)
+                            
+                            ForEach(Array(viewModel.ticketsOffers.prefix(3).enumerated()), id: \.element.id) { index, offer in
+                                ticketsRow(content: offer, index: index)
+                                    .padding(.horizontal, 30)
+                                    .padding(.vertical, 5)
+                            }
+                            
+                        }
+                        
+                    }.padding(.vertical, 15)
+                    Button(action: {
+                        coordinator.push(AllTicketsView())
+                    }) {
+                        Text("Посмотреть все билеты")
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 15)
+                            .foregroundColor(.white)
+                            .background(.blue)
+                            .cornerRadius(10)
+                        
+                    }.padding(.horizontal, 10)
+                    
+                    ZStack(alignment: .leading) {
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(Color.aviaGrey2)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 60)
+                            .padding(.horizontal, 10)
+                            
+                        HStack{
+                            Image(systemName: "bell.fill")
+                                .resizable()
+                                .frame(width: 20, height: 25)
+                                .foregroundStyle(isOn == false ? .blue : .green)
+                                
+                            Text("Подписка на цену")
+                            Spacer()
+                            Toggle(isOn: $isOn) {
+                                
+                            }
+                        }.padding(.horizontal, 20)
+
+                    }.padding(.vertical, 15)
+                    Spacer()
                 }
             }
             .sheet(isPresented: $coordinator.isDatePickerPresented) {
@@ -77,6 +139,10 @@ struct SearchResultView: View {
                     .padding(.horizontal)
                     .padding(.bottom)
                 }
+            }
+
+            .onAppear {
+                viewModel.fetchOfferTickets()
             }
         }.navigationBarBackButtonHidden(true)
     }
@@ -179,14 +245,18 @@ struct SearchResultView: View {
                 .fill(Color.aviaGrey4)
                 .frame(width: 120)
                 .frame(height: 40)
-            HStack(spacing: 0) {
+            HStack(spacing: 10) {
                 if let returnDate = returnDate {
                     Text(formattedDate(date: returnDate))
                         .foregroundStyle(.white)
                     Text(", \(formattedWeekday(date: returnDate))")
                         .foregroundStyle(Color.aviaGrey6)
                 } else {
-                    Text("+ обратно")
+                    Image("plusSign")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundStyle(Color.aviaGrey6)
+                    Text("обратно")
                         .foregroundStyle(.white)
                 }
             }
@@ -249,6 +319,16 @@ struct SearchResultView: View {
             
         }
     }
+    
+    @ViewBuilder
+    func ticketsRow(content: TicketsOffer, index: Int) -> some View {
+        let colors: [Color] = [.aviaRed, .aviaBlue, .white]
+        let circleColor = colors[index % colors.count]
+        
+        FlightsCardView(circleColor: circleColor, carrier: content.title, timeOfFlights: content.time_range, price: content.price.value)
+       
+    }
+    
     
     func formattedDate(date: Date) -> String {
         let formatter = DateFormatter()

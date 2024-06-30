@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AviaView: View {
     @ObservedObject var coordinator: MainCoordinator
+    @StateObject private var viewModel = OffersViewModel()
     
     @State var flightFrom = ""
     @State var flightTo  = ""
@@ -22,7 +23,6 @@ struct AviaView: View {
                 VStack(alignment: .leading) {
                     Text("Поиск дешевых авиaбилетов")
                         .frame(maxWidth: .infinity, alignment: .center)
-                    
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.white)
                         .font(.title)
@@ -37,17 +37,17 @@ struct AviaView: View {
                         
                     }
                     ScrollView(.horizontal) {
-                        
                         HStack {
-                            ForEach(offers, id: \.id) { offer in
+                            ForEach(viewModel.offers, id: \.id) { offer in
                                 scrollCardView(offer: offer)
                             }
                         }
-                    }
+                    }.padding()
+                        .scrollIndicators(.hidden)
                 }
             }.ignoresSafeArea()
                 .onAppear {
-                    fetchOffers()
+                    viewModel.fetchOffers()
                 }
                 .navigationDestination(isPresented: $coordinator.isNavigating) {
                     coordinator.destinationView
@@ -55,16 +55,16 @@ struct AviaView: View {
         }
     }
     
-    private func fetchOffers() {
-        NetworkManager.shared.fetchOffers { result in
-            switch result {
-            case .success(let offersModel):
-                self.offers = offersModel.offers
-            case .failure(let error):
-                print("Error fetching offers: \(error)")
-            }
-        }
-    }
+    //    private func fetchOffers() {
+    //        NetworkManager.shared.fetchOffers { result in
+    //            switch result {
+    //            case .success(let offersModel):
+    //                self.offers = offersModel.offers
+    //            case .failure(let error):
+    //                print("Error fetching offers: \(error)")
+    //            }
+    //        }
+    //    }
     
     private func getImageName(for id: Int) -> String {
         let imageNames = [
@@ -99,7 +99,7 @@ struct AviaView: View {
                     TextField("",
                               text: $flightFrom,
                               prompt: Text("Откуда - Москва")
-                              .foregroundStyle(Color.aviaGrey6))
+                        .foregroundStyle(Color.aviaGrey6))
                     .onChange(of: flightFrom) { oldValue, newValue in
                         let filtered = newValue.filter { $0.isCyrillic || $0.isWhitespace }
                         if filtered != newValue {
@@ -124,13 +124,13 @@ struct AviaView: View {
                         }
                     }
                 }.bold()
-                 .foregroundStyle(.white)
-                 .onTapGesture {
-                     coordinator.showSheet(with: SearchingView(coordinator: coordinator, flightFrom: $flightFrom, flightTo: $flightTo))
-                 }
-                 .sheet(isPresented: $coordinator.isSheetPresented) {
-                     SearchingView(coordinator: coordinator, flightFrom: $flightFrom, flightTo: $flightTo)
-                 }
+                    .foregroundStyle(.white)
+                    .onTapGesture {
+                        coordinator.showSheet(with: SearchingView(coordinator: coordinator, flightFrom: $flightFrom, flightTo: $flightTo))
+                    }
+                    .sheet(isPresented: $coordinator.isSheetPresented) {
+                        SearchingView(coordinator: coordinator, flightFrom: $flightFrom, flightTo: $flightTo)
+                    }
             }.offset(x: 30)
             
         }.padding(15)
@@ -175,8 +175,9 @@ struct AviaView: View {
 
 extension Character {
     var isCyrillic: Bool {
-        let scalar = UnicodeScalar(String(self))!
-        return CharacterSet(charactersIn: "А"..."я" ).contains(scalar)
+        guard let scalar = UnicodeScalar(String(self)) else { return false }
+        let cyrillicCharacters = "А"..."я"
+        return cyrillicCharacters.contains(String(scalar))
     }
 }
 

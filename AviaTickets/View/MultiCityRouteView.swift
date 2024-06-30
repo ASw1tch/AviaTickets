@@ -1,5 +1,5 @@
 //
-//  MultiCityRoute.swift
+//  MultiCityRouteView.swift
 //  AviaTickets
 //
 //  Created by Anatoliy Petrov on 26.6.24..
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MultiCityRoute: View {
+struct MultiCityRouteView: View {
     var body: some View {
         ZStack {
             Color(.black).edgesIgnoringSafeArea(.all)
@@ -19,5 +19,5 @@ struct MultiCityRoute: View {
 }
 
 #Preview {
-    MultiCityRoute()
+    MultiCityRouteView()
 }

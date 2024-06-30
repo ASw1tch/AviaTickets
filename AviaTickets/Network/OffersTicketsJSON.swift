@@ -53,3 +53,4 @@ struct OffersTicketsJSON {
 }
 """.data(using: .utf8)
 }
+

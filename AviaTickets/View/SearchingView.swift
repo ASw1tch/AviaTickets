@@ -31,7 +31,7 @@ struct SearchingView: View {
                     searchCardView()
                     HStack(alignment: .top, spacing: 25) {
                         Button(action: {
-                            coordinator.hideSheetAndPush(MultiCityRoute())
+                            coordinator.hideSheetAndPush(MultiCityRouteView())
                         }, label: {
                             fastButton(color: .aviaGreen, image: "route", text: "Сложный маршрут")
                         })
