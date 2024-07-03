@@ -36,6 +36,7 @@
 		EAFAA1182C31E69100EE33E6 /* OffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFAA1172C31E69100EE33E6 /* OffersViewModel.swift */; };
 		EAFAA11A2C31F2B900EE33E6 /* AllTicketsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFAA1192C31F2B900EE33E6 /* AllTicketsView.swift */; };
 		EAFAA11C2C31F33000EE33E6 /* TicketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFAA11B2C31F33000EE33E6 /* TicketsViewModel.swift */; };
+		EAFAA11E2C34974700EE33E6 /* TicketsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFAA11D2C34974600EE33E6 /* TicketsCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		EAFAA1172C31E69100EE33E6 /* OffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewModel.swift; sourceTree = "<group>"; };
 		EAFAA1192C31F2B900EE33E6 /* AllTicketsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTicketsView.swift; sourceTree = "<group>"; };
 		EAFAA11B2C31F33000EE33E6 /* TicketsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsViewModel.swift; sourceTree = "<group>"; };
+		EAFAA11D2C34974600EE33E6 /* TicketsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				EAFAA10F2C2DC35000EE33E6 /* HotOffersView.swift */,
 				EAA74DC82C07B5EA00B6A8B7 /* HotelsView.swift */,
 				EAFAA1132C3165EA00EE33E6 /* FlightsCardView.swift */,
+				EAFAA11D2C34974600EE33E6 /* TicketsCardView.swift */,
 				EAFAA1192C31F2B900EE33E6 /* AllTicketsView.swift */,
 				EAA74DCC2C07B63900B6A8B7 /* ShortlyView.swift */,
 				EAA74DCE2C07B64400B6A8B7 /* SubscriptionsView.swift */,
@@ -276,6 +279,7 @@
 				EAA74DD92C0D000800B6A8B7 /* TicketsJSON.swift in Sources */,
 				EAFAA1182C31E69100EE33E6 /* OffersViewModel.swift in Sources */,
 				EAA74DCD2C07B63900B6A8B7 /* ShortlyView.swift in Sources */,
+				EAFAA11E2C34974700EE33E6 /* TicketsCardView.swift in Sources */,
 				EAF4977C2C07AFED00F535DC /* MainView.swift in Sources */,
 				EAFAA11A2C31F2B900EE33E6 /* AllTicketsView.swift in Sources */,
 				EAA74DD72C0CFF2900B6A8B7 /* OffersTicketsJSON.swift in Sources */,

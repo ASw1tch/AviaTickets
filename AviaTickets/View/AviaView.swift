@@ -54,18 +54,7 @@ struct AviaView: View {
                 }
         }
     }
-    
-    //    private func fetchOffers() {
-    //        NetworkManager.shared.fetchOffers { result in
-    //            switch result {
-    //            case .success(let offersModel):
-    //                self.offers = offersModel.offers
-    //            case .failure(let error):
-    //                print("Error fetching offers: \(error)")
-    //            }
-    //        }
-    //    }
-    
+
     private func getImageName(for id: Int) -> String {
         let imageNames = [
             1: "coupleAfrica",

@@ -62,7 +62,13 @@ struct SearchResultView: View {
                         
                     }.padding(.vertical, 15)
                     Button(action: {
-                        coordinator.push(AllTicketsView())
+                        let allTicketsView = AllTicketsView(
+                            coordinator: coordinator,
+                            flightFrom: $flightFrom,
+                            flightTo: $flightTo,
+                            selectedDate: $selectedDate
+                        )
+                        coordinator.push(allTicketsView)
                     }) {
                         Text("Посмотреть все билеты")
                             .frame(maxWidth: .infinity)
@@ -101,7 +107,7 @@ struct SearchResultView: View {
                 VStack {
                     DatePicker(
                         "Выберите дату",
-                        selection: $coordinator.selectedDate,
+                        selection: $selectedDate,
                         displayedComponents: .date
                     )
                     .datePickerStyle(GraphicalDatePickerStyle())
@@ -109,6 +115,7 @@ struct SearchResultView: View {
                     .padding()
                     
                     Button("Выбрать") {
+                        
                         coordinator.isDatePickerPresented = false
                     }
                     .buttonStyle(GreenButtonStyle())
@@ -140,6 +147,7 @@ struct SearchResultView: View {
                     .padding(.bottom)
                 }
             }
+            
 
             .onAppear {
                 viewModel.fetchOfferTickets()
@@ -156,7 +164,7 @@ struct SearchResultView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 110)
                 .padding(.horizontal, 10)
-                .shadow(radius: 2, y: 3)
+                
             
             HStack(alignment: .center) {
                 Image("leftArrow")

@@ -65,6 +65,11 @@ class MainCoordinator: ObservableObject {
         destinationView = nil
     }
     
+    func popTo(view: AnyView) {
+        isNavigating = true
+        destinationView = view
+    }
+    
     //MARK: Validation of the filled TextField
     
     func validateFieldsAndNavigate(flightFrom: String, flightTo: String, content: AnyView) {
