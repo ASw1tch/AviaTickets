@@ -2,7 +2,7 @@
 //  OffersModel.swift
 //  AviaTickets
 //
-//  Created by Anatoliy Petrov on 2.6.24..
+//  Created by Anatoliy Petrov on 2.7.24..
 //
 
 

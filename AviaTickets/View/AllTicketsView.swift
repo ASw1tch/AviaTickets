@@ -2,12 +2,13 @@
 //  AllTicketsView.swift
 //  AviaTickets
 //
-//  Created by Anatoliy Petrov on 30.6.24..
+//  Created by Anatoliy Petrov on 4.7.24..
 //
 
 import SwiftUI
 
 struct AllTicketsView: View {
+    
     @ObservedObject var coordinator: MainCoordinator
     @StateObject private var ticketsViewModel = TicketsViewModel()
     
@@ -43,7 +44,7 @@ struct AllTicketsView: View {
                                     Image("graph")
                                         .resizable()
                                         .frame(width: 20.0, height: 20.0)
-                                        
+                                    
                                     Text("График цен")
                                         .italic()
                                 }
@@ -52,12 +53,11 @@ struct AllTicketsView: View {
                         }
                     }
                 
-            }.onAppear {
+                }.onAppear {
                 ticketsViewModel.fetchTickets()
             }
             
         }.navigationBarBackButtonHidden()
-        
     }
     
     @ViewBuilder

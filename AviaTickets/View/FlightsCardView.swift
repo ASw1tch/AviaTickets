@@ -2,17 +2,17 @@
 //  FlightsCardView.swift
 //  AviaTickets
 //
-//  Created by Anatoliy Petrov on 30.6.24..
+//  Created by Anatoliy Petrov on 2.7.24..
 //
 
 import SwiftUI
 
 struct FlightsCardView: View {
     
-    var circleColor: Color /* = .aviaRed*/
-    var carrier: String /*= "Победа"*/
-    var timeOfFlights: [String]/* = ["07:00", "09:10", "10:30", "11:00", "12:30", "13:00", "12:00", "11:00", "12:00"]*/
-    var price: Int /*= 2390*/
+    var circleColor: Color
+    var timeOfFlights: [String]
+    var price: Int
+    var carrier: String
     
     
     var truncatedFlights: String {
@@ -77,7 +77,7 @@ struct FlightsCardView: View {
 
 
 #Preview {
-    FlightsCardView(circleColor: .aviaRed, carrier: "Победа", timeOfFlights: ["10:10"], price: 20323)
+    FlightsCardView(circleColor: .aviaRed, timeOfFlights: ["10:12"], price: 20342, carrier: "RedWings")
 }
 
 

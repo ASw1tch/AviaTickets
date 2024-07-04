@@ -2,7 +2,7 @@
 //  NetworkManager.swift
 //  AviaTickets
 //
-//  Created by Anatoliy Petrov on 2.6.24..
+//  Created by Anatoliy Petrov on 1.7.24..
 //
 
 import Foundation
@@ -16,7 +16,7 @@ class NetworkManager {
         case noData
     }
     
-
+    
     // Fetch Tickets from local JSON data
     func fetchTickets(completion: @escaping (Result<TicketsModel, Error>) -> Void) {
         guard let data = TicketsJSON.data else {

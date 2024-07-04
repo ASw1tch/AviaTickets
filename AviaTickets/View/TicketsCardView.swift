@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct TicketsCardView: View {
-    var circleColor: Color = .aviaRed
+    var circleColor: Color
     var badge: String?
     var price: Int = 7386
-    var departureTime: String = "2024-02-23T03:15:00"
-    var departureAirport: String = "DME"
-    var arrivalTime: String = "2024-02-29T07:45:00"
-    var arrivalAirport: String = "AER"
+    var departureTime: String
+    var departureAirport: String
+    var arrivalTime: String
+    var arrivalAirport: String
     var hasTransfer: Bool?
     var hasBadge: Bool
     
@@ -51,8 +51,6 @@ struct TicketsCardView: View {
                         .italic()
                 }.offset(y:-55)
             }
-           
-                
             
             VStack(alignment: .leading, spacing: 10) {
                 HStack(spacing:5) {

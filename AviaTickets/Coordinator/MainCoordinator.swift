@@ -2,7 +2,7 @@
 //  MainCoordinator.swift
 //  AviaTickets
 //
-//  Created by Anatoliy Petrov on 29.5.24..
+//  Created by Anatoliy Petrov on 1.7.24..
 //
 
 import SwiftUI

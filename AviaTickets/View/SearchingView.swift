@@ -2,7 +2,7 @@
 //  SearchingView.swift
 //  AviaTickets
 //
-//  Created by Anatoliy Petrov on 3.6.24..
+//  Created by Anatoliy Petrov on 3.7.24..
 //
 
 import SwiftUI
@@ -202,6 +202,6 @@ struct SearchingView_Previews: PreviewProvider {
     @State static var flightTo = "Санкт-Петербург"
     
     static var previews: some View {
-            SearchingView(coordinator: MainCoordinator(), flightFrom: $flightFrom, flightTo: $flightTo)
+        SearchingView(coordinator: MainCoordinator(), flightFrom: $flightFrom, flightTo: $flightTo)
     }
 }
