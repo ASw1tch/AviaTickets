@@ -9,14 +9,26 @@ import SwiftUI
 
 struct TicketsCardView: View {
     var circleColor: Color = .aviaRed
-    var badge: String? = "Самый удобный"
+    var badge: String?
     var price: Int = 7386
     var departureTime: String = "2024-02-23T03:15:00"
     var departureAirport: String = "DME"
     var arrivalTime: String = "2024-02-29T07:45:00"
     var arrivalAirport: String = "AER"
-    var hasTransfer: Bool
+    var hasTransfer: Bool?
     var hasBadge: Bool
+    
+    init(circleColor: Color, badge: String? = nil, price: Int, departureTime: String, departureAirport: String, arrivalTime: String, arrivalAirport: String, hasTransfer: Bool? = false, hasBadge: Bool ) {
+        self.circleColor = circleColor
+        self.badge = badge
+        self.price = price
+        self.departureTime = departureTime
+        self.departureAirport = departureAirport
+        self.arrivalTime = arrivalTime
+        self.arrivalAirport = arrivalAirport
+        self.hasTransfer = hasTransfer
+        self.hasBadge = hasBadge
+    }
     
     var body: some View {
         
@@ -29,59 +41,67 @@ struct TicketsCardView: View {
                 .fill(Color.aviaGrey2)
                 .frame(maxWidth: .infinity)
                 .frame(height: 120)
-            ZStack {
-                Capsule()
-                    .fill(.blue)
-                    .frame(width: 150, height: 25)
-                Text(badge ?? "Unknown")
-                    .italic()
-            }.position(x: 76, y: 320)
+            
+            if let badge = badge, hasBadge {
+                ZStack {
+                    Capsule()
+                        .fill(.blue)
+                        .frame(width: 150, height: 25)
+                    Text(badge)
+                        .italic()
+                }.offset(y:-55)
+            }
+           
                 
+            
             VStack(alignment: .leading, spacing: 10) {
                 HStack(spacing:5) {
                     let formattedPrice = formatPrice(price)
                     Text(formattedPrice)
                     Text("₽")
                 }.font(.title2)
-                .bold()
-                    VStack(alignment: .leading) {
-                        HStack(alignment: .center) {
-                            Circle()
-                                .fill(circleColor)
-                                .frame(width: 27)
-                                .fixedSize()
-                            VStack(alignment: .leading, spacing: 3) {
-                                HStack(spacing: 6) {
-                                    Text(formattedDepartureTime)
-                                        .foregroundColor(.white)
-                                        .italic()
-                                    Text("—")
-                                        .foregroundStyle(Color.aviaGrey6)
-                                    Text(formattedArrivalTime)
-                                        .foregroundColor(.white)
-                                        .italic()
-                                    HStack(spacing: 2){
-                                        Text(" \(timeTravel)ч в пути")
+                    .bold()
+                VStack(alignment: .leading) {
+                    HStack(alignment: .center) {
+                        Circle()
+                            .fill(circleColor)
+                            .frame(width: 27)
+                            .fixedSize()
+                        VStack(alignment: .leading, spacing: 3) {
+                            HStack(spacing: 6) {
+                                Text(formattedDepartureTime)
+                                    .foregroundColor(.white)
+                                    .italic()
+                                Text("—")
+                                    .foregroundStyle(Color.aviaGrey6)
+                                Text(formattedArrivalTime)
+                                    .foregroundColor(.white)
+                                    .italic()
+                                HStack(spacing: 2){
+                                    Text(" \(timeTravel)ч в пути")
+                                    if hasTransfer != false {
                                         Text("/")
                                             .foregroundStyle(Color.aviaGrey6)
                                         Text("Без пересадок")
                                             .foregroundColor(.white)
                                     }
                                 }
-                                HStack {
-                                    Text(departureAirport)
-                                        .italic()
-                                    Text("   ")
-                                    Text(arrivalAirport)
-                                        .italic()
-                                }.foregroundStyle(Color.aviaGrey6)
                             }
+                            HStack {
+                                Text(departureAirport)
+                                    .italic()
+                                Text("   ")
+                                Text(arrivalAirport)
+                                    .italic()
+                            }.foregroundStyle(Color.aviaGrey6)
                         }
-                    }.font(.system(size: 15))
+                    }
+                }.font(.system(size: 14))
                 
             }.padding()
-                .offset(y: 7)
-        }
+                .offset(y: 10)
+        }.offset(y: hasBadge ? 9 : 7)
+            .background(Color.clear)
     }
     private func formatPrice(_ value: Int) -> String {
         let formatter = NumberFormatter()
@@ -121,5 +141,14 @@ struct TicketsCardView: View {
 
 
 #Preview {
-    TicketsCardView(hasTransfer: false, hasBadge: true)
+    TicketsCardView(circleColor: .aviaRed,
+                    badge: "фывьащzxcvzш",
+                    price: 7386,
+                    departureTime: "2024-02-23T03:15:00",
+                    departureAirport: "DME",
+                    arrivalTime: "2024-02-29T07:45:00",
+                    arrivalAirport: "AER",
+                    hasTransfer: false,
+                    hasBadge: true)
 }
+

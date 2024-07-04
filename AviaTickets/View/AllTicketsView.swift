@@ -19,22 +19,45 @@ struct AllTicketsView: View {
         NavigationStack {
             ZStack {
                 Color(.black).edgesIgnoringSafeArea(.all)
-                searchCardView()
-                ScrollView(.vertical) {
-                    VStack {
-                        
-                        
-                        //                    ForEach(ticketsViewModel.tickets, id: \.id) { ticket in
-                        //                        ticketCardView(ticket: ticket)
-                        //                    }
+                VStack(alignment: .center) {
+                    searchCardView()
+                    ScrollView {
+                        VStack(spacing: 20) {
+                            ForEach(ticketsViewModel.tickets, id: \.id) { ticket in
+                                ticketCardView(ticket: ticket)
+                            }
+                        }
+                    }.padding(.horizontal, 10)
+                        .padding(.vertical, 20)
+                        .overlay {
+                            ZStack {
+                                Capsule()
+                                    .fill(.blue)
+                                    .frame(width: 250, height: 50)
+                                HStack(spacing: 3) {
+                                    Image("filter")
+                                        .resizable()
+                                        .frame(width: 20.0, height: 20.0)
+                                    Text("Фильтр")
+                                    Text("  ")
+                                    Image("graph")
+                                        .resizable()
+                                        .frame(width: 20.0, height: 20.0)
+                                        
+                                    Text("График цен")
+                                        .italic()
+                                }
+                            }
+                            .offset(y: 260)
+                        }
                     }
-                }.padding()
+                
             }.onAppear {
                 ticketsViewModel.fetchTickets()
             }
-
+            
         }.navigationBarBackButtonHidden()
-           
+        
     }
     
     @ViewBuilder
@@ -48,55 +71,47 @@ struct AllTicketsView: View {
                 .shadow(radius: 2, y: 3)
             
             HStack {
-                    Button(action: {
-                        coordinator.popTo(view: AnyView(SearchResultView(
-                            coordinator: coordinator,
-                            flightFrom: $flightFrom,
-                            flightTo: $flightTo
-                        )))
-                    }, label: {
-                        Image(systemName: "arrow.left")
-                            .resizable()
-                            .frame(width: 23.0, height: 23.0)
-                            .foregroundStyle(.blue)
-                            .padding(.horizontal, 5)
-                    })
-                    
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 0){
-                            Text(flightFrom)
-                            Text("-")
-                            Text(flightTo)
-                        }.bold()
-                        HStack(spacing: 0) {
-                            Text(formattedDate(date: selectedDate))
-                            Text(", 1 пассажир")
-                        }.foregroundStyle(Color.aviaGrey6)
-                    }
+                Button(action: {
+                    coordinator.popTo(view: AnyView(SearchResultView(
+                        coordinator: coordinator,
+                        flightFrom: $flightFrom,
+                        flightTo: $flightTo
+                    )))
+                }, label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .frame(width: 23.0, height: 23.0)
+                        .foregroundStyle(.blue)
+                        .padding(.horizontal, 5)
+                })
+                
+                VStack(alignment: .leading) {
+                    HStack(spacing: 0){
+                        Text(flightFrom)
+                        Text("-")
+                        Text(flightTo)
+                    }.bold()
+                    HStack(spacing: 0) {
+                        Text(formattedDate(date: selectedDate))
+                        Text(", 1 пассажир")
+                    }.foregroundStyle(Color.aviaGrey6)
+                }
             }.offset(x: 20)
-            }
         }
+    }
     
     
     @ViewBuilder
     func ticketCardView(ticket: Ticket) -> some View {
         
-        
-//        VStack(alignment: .leading, spacing: 8) {
-//            let formattedPrice = formatPrice(ticket.price.value)
-//            Text("Рейс: \(ticket.company)")
-//                .font(.headline)
-//                .foregroundStyle(.white)
-//            Text("Отправление: \(ticket.departure.town.rawValue) (\(ticket.departure.airport.rawValue))")
-//                .font(.subheadline)
-//                .foregroundStyle(.white)
-//            Text("Прибытие: \(ticket.arrival.town.rawValue) (\(ticket.arrival.airport.rawValue))")
-//                .font(.subheadline)
-//                .foregroundStyle(.white)
-//            Text("Цена: \(formattedPrice) ₽")
-//                .font(.subheadline)
-//                .foregroundStyle(.white)
-//        }
+        TicketsCardView(circleColor: .aviaRed,
+                        badge: ticket.badge,
+                        price: ticket.price.value,
+                        departureTime: ticket.departure.date,
+                        departureAirport: ticket.departure.airport.rawValue,
+                        arrivalTime: ticket.arrival.date,
+                        arrivalAirport: ticket.arrival.airport.rawValue,
+                        hasTransfer: ticket.has_transfer, hasBadge: ticket.badge != nil)
     }
     
     private func formatPrice(_ value: Int) -> String {
@@ -124,7 +139,7 @@ struct AllTicketsView_Previews: PreviewProvider {
         AllTicketsView(
             coordinator: MainCoordinator(),
             flightFrom: $flightFrom,
-            flightTo: $flightTo, 
+            flightTo: $flightTo,
             selectedDate: $selectedDate
         )
     }
