@@ -5,7 +5,7 @@
 //  Created by Anatoliy Petrov on 2.7.24..
 //
 
-
+import Foundation
 
 // MARK: - OffersModel
 struct OffersModel: Codable {
