@@ -111,7 +111,7 @@ struct AllTicketsView: View {
                         departureAirport: ticket.departure.airport.rawValue,
                         arrivalTime: ticket.arrival.date,
                         arrivalAirport: ticket.arrival.airport.rawValue,
-                        hasTransfer: ticket.has_transfer, hasBadge: ticket.badge != nil)
+                        hasTransfer: ticket.hasTransfer, hasBadge: ticket.badge != nil)
     }
     
     private func formatPrice(_ value: Int) -> String {
@@ -131,8 +131,8 @@ struct AllTicketsView: View {
 }
 
 struct AllTicketsView_Previews: PreviewProvider {
-    @State static var flightFrom = "Москvа"
-    @State static var flightTo = "Сочаи"
+    @State static var flightFrom = "Москва"
+    @State static var flightTo = "Сочи"
     @State static var selectedDate = Date.now
     
     static var previews: some View {
