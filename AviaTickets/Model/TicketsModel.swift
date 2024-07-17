@@ -1,10 +1,3 @@
-//
-//  TicketsModel.swift
-//  AviaTickets
-//
-//  Created by Anatoliy Petrov on 2.7.24..
-//
-
 import Foundation
 
 // MARK: - TicketsModel
@@ -17,16 +10,32 @@ struct Ticket: Codable {
     let id: Int
     let badge: String?
     let price: Price
-    let provider_name: String
+    let providerName: String
     let company: String
     let departure: Arrival
     let arrival: Arrival
-    let has_transfer: Bool
-    let has_visa_transfer: Bool
+    let hasTransfer: Bool
+    let hasVisaTransfer: Bool
     let luggage: Luggage
-    let hand_luggage: HandLuggage
-    let is_returnable: Bool
-    let is_exchangable: Bool
+    let handLuggage: HandLuggage
+    let isReturnable: Bool
+    let isExchangable: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case badge
+        case price
+        case providerName = "provider_name"
+        case company
+        case departure
+        case arrival
+        case hasTransfer = "has_transfer"
+        case hasVisaTransfer = "has_visa_transfer"
+        case luggage
+        case handLuggage = "hand_luggage"
+        case isReturnable = "is_returnable"
+        case isExchangable = "is_exchangable"
+    }
 }
 
 // MARK: - Arrival
@@ -44,20 +53,30 @@ enum Airport: String, Codable {
 
 // MARK: - Town
 enum Town: String, Codable {
-    case москва = "Москва"
-    case сочи = "Сочи"
+    case moscow = "Москва"
+    case sochi = "Сочи"
 }
 
 // MARK: - HandLuggage
 struct HandLuggage: Codable {
-    let has_hand_luggage: Bool
+    let hasHandLuggage: Bool
     let size: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case hasHandLuggage = "has_hand_luggage"
+        case size
+    }
 }
 
 // MARK: - Luggage
 struct Luggage: Codable {
-    let has_luggage: Bool
+    let hasLuggage: Bool
     let price: Price?
+    
+    enum CodingKeys: String, CodingKey {
+        case hasLuggage = "has_luggage"
+        case price
+    }
 }
 
 // MARK: - Price

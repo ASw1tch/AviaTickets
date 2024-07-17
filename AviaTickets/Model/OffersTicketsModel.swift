@@ -9,15 +9,26 @@ import Foundation
 
 // MARK: - OffersTicketsModel
 struct OffersTicketsModel: Codable {
-    let tickets_offers: [TicketsOffer]
+    let ticketsOffers: [TicketsOffer]
+    
+    enum CodingKeys: String, CodingKey {
+        case ticketsOffers = "tickets_offers"
+    }
 }
 
 // MARK: - TicketsOffer
 struct TicketsOffer: Codable {
     let id: Int
     let title: String
-    let time_range: [String]
+    let timeRange: [String]
     let price: OfferTicketsPrice
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case timeRange = "time_range"
+        case price
+    }
 }
 
 // MARK: - OfferTicketsPrice
