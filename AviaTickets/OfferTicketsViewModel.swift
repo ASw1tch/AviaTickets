@@ -21,7 +21,7 @@ class OfferTicketsViewModel: ObservableObject {
                 self?.isLoading = false
                 switch result {
                 case .success(let offersTicketsModel):
-                    self?.ticketsOffers = offersTicketsModel.tickets_offers
+                    self?.ticketsOffers = offersTicketsModel.ticketsOffers
                 case .failure(let error):
                     self?.errorMessage = "Failed to load data: \(error.localizedDescription)"
                 }

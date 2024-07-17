@@ -333,7 +333,10 @@ struct SearchResultView: View {
         let colors: [Color] = [.aviaRed, .aviaBlue, .white]
         let circleColor = colors[index % colors.count]
         
-        FlightsCardView(circleColor: circleColor, carrier: content.title, timeOfFlights: content.time_range, price: content.price.value)
+        FlightsCardView(circleColor: circleColor,
+                        timeOfFlights: content.timeRange,
+                        price: content.price.value,
+                        carrier: content.title)
        
     }
     
